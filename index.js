@@ -13,6 +13,7 @@ const PORT = process.env.PORT || 3000;
 app.use(helmet()); // Sécurité générale
 app.use(express.json()); // ta9ra el body mta3 les requêtes (JSON)
 
+app.use('/api/auth', require('./routes/auth'));
 
 // Démarrage du serveur
 app.listen(PORT, () => {
