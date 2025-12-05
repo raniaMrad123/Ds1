@@ -2,7 +2,7 @@ const User = require("../models/User");
 const { hashPassword } = require("../utils/bcrypt");
 
 // --------------------------------------------------
-// GET all users
+// affichage mte3 users eli mawjoudin lkol 
 // --------------------------------------------------
 exports.getAllUsers = async (req, res) => {
   try {
@@ -14,7 +14,7 @@ exports.getAllUsers = async (req, res) => {
 };
 
 // --------------------------------------------------
-// GET user by ID
+// affichage users bil  ID mte3hom 
 // --------------------------------------------------
 exports.getUserById = async (req, res) => {
   try {
@@ -28,10 +28,10 @@ exports.getUserById = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: "Erreur serveur", error: error.message });
   }
-};
+}; 
 
 // --------------------------------------------------
-// UPDATE user
+// modification mte3 les informations mte3 users  
 // --------------------------------------------------
 exports.updateUser = async (req, res) => {
   try {
@@ -59,7 +59,7 @@ exports.updateUser = async (req, res) => {
 };
 
 // --------------------------------------------------
-// DELETE user
+// t5asa5 users 
 // --------------------------------------------------
 exports.deleteUser = async (req, res) => {
   try {
