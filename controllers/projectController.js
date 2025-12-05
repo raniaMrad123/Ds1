@@ -2,7 +2,7 @@ const Project = require("../models/Project");
 const mongoose = require("mongoose");
 
 // --------------------------------------------------
-// CREATE project
+// na3mil project jdid 
 // --------------------------------------------------
 exports.createProject = async (req, res) => {
   try {
@@ -30,7 +30,7 @@ exports.createProject = async (req, res) => {
 };
 
 // --------------------------------------------------
-// GET all projects → recherche, filtre statut, tri, pagination
+// Affichage mte3 les projets lkol  projects → recherche, filtre statut, tri, pagination
 // --------------------------------------------------
 exports.getAllProjects = async (req, res) => {
   try {
@@ -49,7 +49,7 @@ exports.getAllProjects = async (req, res) => {
 
     let filter = {};
 
-    // Seulement ses propres projets pour les utilisateurs normaux
+    // user 3adi eli mouch manager just ynajem ychouf lprojects mte3ou 
     if (req.user.role !== "manager") {
       filter.proprietaire = req.user._id;
     }
@@ -92,7 +92,7 @@ exports.getAllProjects = async (req, res) => {
 };
 
 // --------------------------------------------------
-// GET project by ID
+// GET project by ID 
 // --------------------------------------------------
 exports.getProjectById = async (req, res) => {
   try {
@@ -120,7 +120,7 @@ exports.getProjectById = async (req, res) => {
 };
 
 // --------------------------------------------------
-// UPDATE project
+// modification projet
 // --------------------------------------------------
 exports.updateProject = async (req, res) => {
   try {
@@ -164,7 +164,7 @@ exports.updateProject = async (req, res) => {
 };
 
 // --------------------------------------------------
-// DELETE project
+// nfaskhouu  projet 
 // --------------------------------------------------
 exports.deleteProject = async (req, res) => {
   try {
@@ -183,9 +183,7 @@ exports.deleteProject = async (req, res) => {
     if (req.user.role !== "manager" && !project.proprietaire.equals(req.user._id)) {
       return res.status(403).json({ message: "Accès refusé" });
     }
-
     await Project.deleteOne({ _id: id });
-
     res.status(200).json({ message: "Projet supprimé avec succès" });
   } catch (error) {
     console.error("Erreur suppression projet:", error);
