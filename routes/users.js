@@ -10,14 +10,14 @@ const { auth, isManager } = require("../middleware/auth");
 
 const router = express.Router();
 
-// GET all users (manager only)
+// afficher laa3bed lkol ama ken manager ynajem ya3milha 
 router.get("/", auth, isManager, getAllUsers);
 
-// GET user by ID (any authenticated user)
+// GET user by ID (ay  user 3amil login ynajem ya3milha ) 
 router.get("/:id", auth, getUserById);
-// PUT update user (manager only)
+// ta3mil modification l user  (manager only)
 router.put("/:id", auth, isManager, updateUser);
 
-// DELETE user (manager only)
+// fasakh  user (ken manager ynajem yfasakh)
 router.delete("/:id", auth, isManager, deleteUser);
 module.exports = router;
