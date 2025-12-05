@@ -1,13 +1,12 @@
 const User = require("../models/User");
-const { hashPassword, comparePassword } = require("../helpers/bcrypt");
-const { generateToken } = require("../helpers/jwt");
+const { hashPassword } = require("../utils/bcrypt");
 
 // --------------------------------------------------
 // GET all users
 // --------------------------------------------------
 exports.getAllUsers = async (req, res) => {
   try {
-    const users = await User.find().select("-password"); // enlever le mot de passe
+    const users = await User.find().select("-motDePasse"); // <-- corriger
     res.status(200).json(users);
   } catch (error) {
     res.status(500).json({ message: "Erreur serveur", error: error.message });
@@ -19,7 +18,7 @@ exports.getAllUsers = async (req, res) => {
 // --------------------------------------------------
 exports.getUserById = async (req, res) => {
   try {
-    const user = await User.findById(req.params.id).select("-password");
+    const user = await User.findById(req.params.id).select("-motDePasse"); // <-- corriger
 
     if (!user) {
       return res.status(404).json({ message: "Utilisateur introuvable" });
@@ -39,15 +38,15 @@ exports.updateUser = async (req, res) => {
     const updates = req.body;
 
     // Si mot de passe → hash avant update
-    if (updates.password) {
-      updates.password = await hashPassword(updates.password);
+    if (updates.motDePasse) {
+      updates.motDePasse = await hashPassword(updates.motDePasse); // <-- corriger
     }
 
     const updatedUser = await User.findByIdAndUpdate(
       req.params.id,
       updates,
       { new: true }
-    ).select("-password");
+    ).select("-motDePasse"); // <-- corriger
 
     if (!updatedUser) {
       return res.status(404).json({ message: "Utilisateur introuvable" });

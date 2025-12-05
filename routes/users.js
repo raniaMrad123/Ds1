@@ -6,18 +6,18 @@ const {
   deleteUser,
 } = require("../controllers/userController");
 
+const { auth, isManager } = require("../middleware/auth");
+
 const router = express.Router();
 
-// route bich tjibli kol users
-router.get("/", getAllUsers);
+// GET all users (manager only)
+router.get("/", auth, isManager, getAllUsers);
 
-// route bich tjibli user b id mte3ou
-router.get("/:id", getUserById);
+// GET user by ID (any authenticated user)
+router.get("/:id", auth, getUserById);
+// PUT update user (manager only)
+router.put("/:id", auth, isManager, updateUser);
 
-// route bich tbadel user (update)
-router.put("/:id", updateUser);
-
-// route bich tfasa5 user
-router.delete("/:id", deleteUser);
-
+// DELETE user (manager only)
+router.delete("/:id", auth, isManager, deleteUser);
 module.exports = router;
